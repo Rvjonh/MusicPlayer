@@ -1,0 +1,51 @@
+$background-color: rgb(0, 0, 0);
+
+$text-color : rgb(255, 255, 0);
+$primary-color : rgb(255, 255, 0);
+
+$alpha-color : rgba(0, 0, 0, 0.5);
+$shadow : 0 15px 40px $alpha-color;
+
+@import 'foundation/header';
+@import 'foundation/songs-list';
+@import 'foundation/media-player';
+@import 'foundation/animationPlaying';
+@import 'foundation/animationMusicMove';
+
+@import 'foundation/shortcutsModal';
+@import 'foundation/profileModal';
+
+:root,body,*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: $background-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.root{
+    background-color: $background-color;
+    width: 100%;
+    max-width: 80em;
+    height: 100vh;
+
+    display: grid;
+
+    justify-items: center;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto
+                        auto
+                        auto;
+}

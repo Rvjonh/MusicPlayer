@@ -1,0 +1,13 @@
+/*--------------Mixins------------*/
+
+@mixin mq($width) {
+    @media screen and (min-width:$width) {
+        @content;
+    }
+}
+
+@mixin mqh($height) {
+    @media screen and (min-height:$height) {
+        @content;
+    }
+}

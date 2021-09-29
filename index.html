@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MusicPlayer - Jonh Gomez</title>
+		<meta name="author" content="Jonh Gomez @Rvjonh">
+		<meta name="description" content="Mediaplayer done by Jonh Gomez for playing music online">
+
+		<link rel="shortcut icon" href="src\assets\extra\play-logo.png" type="image/x-icon" />
+		<link rel="stylesheet" href="src\stylies\style.css" />
+
+		<script src="index.js" type="module"></script>
+	</head>
+	<body>
+		<div class="root">
+			<header class="header">
+				<h1>Music Player</h1>
+				<picture class="logo">
+					<img src="src\assets\extra\play-logo.png" alt="Music player logo" />
+				</picture>
+
+				<div id="shortcuts-modal" class="shortcut-modal">
+					<picture id="button-shortcuts-modal" class="logo-modal" title="shortcuts keys">
+						<img class="logo-img" src="src\assets\extra\shortcuts-icon-min.png" alt="Logo for showing the modal shortcut keys">
+					</picture>
+					<main class="info-modal">
+						<div id="close-button-shortcuts-modal">✖</div>
+						<h3>Shortcuts with keyboard</h3>
+						<ul>
+							<li>
+								<figure>
+									<button class="button-keyboard" >Esc</button>
+									<figcaption> - Close Media Player</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >Click ✲</button>
+									<figcaption> - Select song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >Tab ↹</button>
+									<figcaption> - Go down through the songs</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >Enter ⎆</button>
+									<figcaption> - Select song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >Space</button>
+									<figcaption> - Play/Pause the song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" > ▲ </button>
+									<figcaption> - Go up through the songs list</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >P ⏪</button>
+									<figcaption> - Previous song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" > ▼ </button>
+									<figcaption> - Go down through the songs list</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >N ⏩</button>
+									<figcaption> - Next song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >M 🔍</button>
+									<figcaption> - Mute the song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >F 🔍</button>
+									<figcaption> - Display/Close MediaPlayer</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >R ↻</button>
+									<figcaption> - Repeat song</figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<button class="button-keyboard" >A ⍰</button>
+									<figcaption> - Generate random list</figcaption>
+								</figure>
+							</li>
+						</ul>
+					</main>
+				</div>
+
+				<div id="profile-modal" class="profile-modal">
+					<picture id="button-profile-modal" class="logo-modal">
+						<img class="logo-img" src="src\assets\extra\profile-image-min-min.png" alt="Logo for showing profile image">
+					</picture>
+					<main class="info-modal">
+						<div id="close-button-profile-modal">✖</div>
+						<h3>Creator Profile</h3>
+						<picture class="img-container">
+							<img src="src\assets\extra\perfil.jpg" alt="photo of my favorite DJ, not mine beacuse I didn't have a camera :P">
+						</picture>
+						<p class="full-name">Jonh Gomez ®</p>
+						<p class="career">A Systems engineer</p>
+						<p class="ubicacion">&#x2302; Venezuela</p>
+						<p class="email-contact"><a href="mailto:jonhvelasco3@gmail.com">Jonhvelasco3@gmail.com</a></p>
+						<p class="inspiration">MediaPlayer to use the Javascript Audio API, as a proyect: <a class="link-repo" target="_blank" rel="noopener" href="https://github.com/Rvjonh/MediaPlayer">https://github.com/Rvjonh/MediaPlayer</a></p>
+						<p class="tags-container">
+							<span class="tag-item">Web</span>
+							<span class="tag-item">Javascript</span>
+							<span class="tag-item">App</span>
+						</p>
+						<div class="social-media">
+							<a class="link-social-media" target="_blanck" rel="noopener" href="https://www.facebook.com/jonh.velasco.37/">
+								<img class="logo-social-media" src="src\assets\extra\facebook-logo.svg" alt="facebook logo">
+							</a>
+							<a class="link-social-media" target="_blanck" rel="noopener" href="https://github.com/Rvjonh">
+								<img class="logo-social-media" src="src\assets\extra\github-logo.svg" alt="github logo">
+							</a>
+							<a class="link-social-media" target="_blanck" rel="noopener" href="https://twitter.com/Rvjonh">
+								<img class="logo-social-media" src="src\assets\extra\twitter-logo.svg" alt="twiter logo">
+							</a>
+						</div>
+					</main>
+				</div>
+
+
+			</header>
+
+			<section id="container-songs" class="songs-list">
+				<!-- Song's list  example----->
+			<!-- <div class="song-item" id="song-3">
+				
+				<picture class="song-img">
+					<img src="src\assets\covers\BackToMe.jpg">
+				</picture>
+
+                <div class="song-info">
+                    <h2>Back To Me</h2>
+                    <p>Jai Nova</p>
+                </div>
+
+            </div> -->
+			</section>
+
+			<section id="panel-controls" class="media-player">
+				<figure id="frame" class="frame">
+					<h3 id="title-song" class="title-frame">Dj Tiesto songs</h3>
+					<img id="img-song" class="img-frame" src="src\assets\covers\Tiesto-Club-Life.jpg" alt="image of the song" />
+					<figcaption id="author-song" class="author-frame">author</figcaption>
+				</figure>
+
+				<div id="all-controls" class="all-controls">
+					<div id="container-progress" class="bar-progress">
+						<audio id="audio-song" src=""></audio>
+						<div id="progress"></div>
+						<div id="progress-downloaded"></div>
+						<span id="display-time">00:00</span>
+					</div>
+
+					<div id="time-song" class="time-song">
+						<span id="begin-time" class="text-time">00:00</span>
+						<span id="end-time" class="text-time">00:00</span>
+					</div>
+
+					<div class="controls">
+						<button id="volume" class="button volume" tabindex="-1">
+							<img id="voluble-img" class="active" src="src\assets\controls-img\volume.png" alt="mute the song" />
+							<img id="mute-img" src="src\assets\controls-img\mute.png" alt="active volume" />
+						</button>
+
+						<div id="volume-bar" class="volume-bar">
+							<input id="control-volume" class="volume-range" type="range" step="0.1" min="0.0" max="1.0" value="1.0" />
+						</div>
+
+						<button id="previous" class="button" tabindex="-1">
+							<img src="src\assets\controls-img\previous-button.png" alt="pass to previous song" />
+						</button>
+
+						<button id="play" class="button play" tabindex="-1">
+							<img id="play-button" src="src\assets\controls-img\play.png" alt="play the song" />
+							<img id="pause-button"
+								class="active"
+								src="src\assets\controls-img\pause.png"
+								alt="pause the song"
+							/>
+						</button>
+
+						<button id="next" class="button" tabindex="-1">
+							<img src="src\assets\controls-img\next-button.png" alt="pass to next song" />
+						</button>
+
+						<button id="full-screen" class="button full-screen" tabindex="-1">
+							<img
+								id="open-fullscreen"
+								class="active"
+								src="src/assets/controls-img/full-screen-entry.png"
+								alt="open the control menu"
+							/>
+							<img
+								id="close-fullscreen"
+								src="src/assets/controls-img/full-screen-exit.png"
+								alt="close the control menu"
+							/>
+						</button>
+					</div>
+					<!-- Activate when it is open the full screen -->
+
+					<div id="aditional-controls" class="aditional-controls">
+						<button id="repeat" class="button repeat" tabindex="-1" title="repeat indefinitely or once">
+							<img
+								src="src\assets\controls-img\repeat.png"
+								alt="click to repeat the song one time or indefinitely"
+							/>
+						</button>
+
+						<button id="random" class="button random" tabindex="-1" title="play randomly songs">
+							<img
+								src="src\assets\controls-img\random.png"
+								alt="click to play random songs in the list"
+							/>
+						</button>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

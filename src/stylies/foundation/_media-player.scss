@@ -1,0 +1,524 @@
+@import "mixins";
+
+$color-bar-progress: rgb(0, 0, 0);
+$color-point-progress: rgb(255, 255, 0);
+$color-bar-progress-downloaded: rgba(255, 255, 212, 0.52);
+
+$background-color-buttons: rgb(255, 255, 0);
+
+.media-player.active-media-player {
+	position: sticky;
+	top: 3.5;
+	bottom: 0;
+	display: flex;
+	opacity: 1;
+	animation: appear-control-menu .25s;
+}
+@keyframes appear-control-menu {
+	from{
+		opacity: 0;
+		transform: translateY(2em);
+	}
+	
+	to{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.media-player.expanded-media-player{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+
+	animation: expande-control-menu-full-screen .1s;
+
+	.frame.active{
+		display: flex;
+	}
+	.all-controls{
+		height: 13em;
+	}
+	@include mqh(41em){
+		top: 3.5em;
+	}
+}
+@keyframes expande-control-menu-full-screen{
+	from{
+		transform: scale(1.1);
+	}
+	to{
+		transform: scale(1);
+	}
+}
+
+.media-player {
+	display: none;
+
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	box-sizing: border-box;
+
+	grid-column: 1/2;
+	grid-row: 3/4;
+
+	opacity: 0;
+	width: 100%;
+	max-width: 80em;
+
+	color: $text-color;
+
+	background: linear-gradient(to right, $background-color 20%, rgb(70, 70, 70), $background-color 80%);
+
+
+	.frame {
+		position: relative;
+		display: none;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+
+		text-align: center;
+
+
+		.title-frame {
+			z-index: 2;
+
+			font-size: 2em;
+			width: 80%;
+			max-width: 30em;
+			margin-top: 1em;
+			@include mq(60em){
+				max-width: 40em;
+			}
+
+			margin: 0.2em;
+
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;/* number of lines to show */
+			-webkit-box-orient: vertical;
+
+			@include mqh(37.5em) {
+				margin: 0.4em;
+			}
+		}
+		.img-frame {
+			z-index: 2;
+			cursor: grab;
+
+			display: block;
+			width: 75%;
+			height: 75%;
+			object-fit: contain;
+			max-width: 25em;
+
+			@include mqh(70em){
+				max-width: 40em;
+			}
+
+		}
+		.frame-img-animation{
+			animation: frame-img-animation-loop .3s;
+		}
+		@keyframes frame-img-animation-loop {
+			from{
+				cursor: grabbing;
+				transform:  scale(1) translate(-1em, .5em);
+			}
+			36%{
+				transform:  scale(1.05) translate(1em, 0em);
+			}
+			50%{
+				transform: scale(1.1)  translate(-1em , -0.5em);
+			}
+			to{
+				transform: scale(1)  translate(0em , 0em);
+			}
+		}
+		.author-frame {
+			z-index: 2;
+
+			margin-bottom: 1em;
+			font-size: 1.2em;
+			
+			margin: 0.2em;
+
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;/* number of lines to show */
+			-webkit-box-orient: vertical;
+
+			@include mqh(37.5em) {
+				margin: 0.4em;
+			}
+		}
+	}
+
+	.all-controls{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+
+		.bar-progress {
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			height: 1.2em;
+			max-width: 50em;
+			margin-top: .2em;
+			border-radius: 0.5em;
+			border: 0.2em solid $color-point-progress;
+			background-color: $color-bar-progress;
+	
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+	
+			position: relative;
+	
+			#progress {
+				position: relative;
+				z-index: 2;
+				width: 0%;
+				height: 50%;
+				margin: 0.2em;
+				background-color: $color-point-progress;
+			}
+			#progress::after {
+				content: " ";
+				position: absolute;
+				top: -0.3em;
+				right: -0.5em;
+				z-index: 2;
+				width: 1em;
+				height: 1em;
+				border-radius: 50%;
+				border: 0.2em solid black;
+				background-color: $color-point-progress;
+				box-sizing: border-box;
+			}
+			#progress-downloaded{
+				position: absolute;
+				z-index: 1;
+				height: 50%;
+				width: 0%;
+				margin: 0.2em;
+				background-color: $color-bar-progress-downloaded;
+			}
+			#display-time {
+				display: none;
+				z-index: 2;
+				color: $color-bar-progress;
+				background-color: $color-point-progress;
+	
+				position: absolute;
+				top: -1.9em;
+				left: 50%;
+	
+				padding: 0.2em;
+				font-weight: bolder;
+				border-radius: 0.2em;
+			}
+			#display-time.active {
+				display: block;
+			}
+
+			@include mqh(37.5em){
+				margin-top: .5em;
+			}
+
+		}
+	
+		.time-song.active{
+			display: flex;
+		}
+		.time-song {
+			display: none;
+			width: 100%;
+			max-width: 50em;
+			margin-top: 1em;
+			justify-content: space-between;
+			
+			.text-time {
+				color: $text-color;
+				font-weight: bolder;
+			}
+		}
+	
+		.button {
+			display: block;
+			width: 4em;
+			height: 4em;
+			cursor: pointer;
+			outline: none;
+			border: none;
+			border-radius: 0.2em;
+			padding: 0.4em;
+			background-color: $background-color-buttons;
+		}
+		.animation-make-bigger-button{
+			animation: make-bigger-button .25s;
+		}
+		@keyframes make-bigger-button {
+			from{
+				transform: scale(1);
+			}
+			to{
+				transform: scale(1.5);
+			}
+		}
+		.button:active {
+			opacity: 0.2;
+		}
+		.button + .button {
+			margin-left: 0.6em;
+		}
+	
+		.button img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	
+		.controls {
+			width: 100%;
+			max-width: 40em;
+			padding: 1em 0;
+			position: relative;
+	
+			display: flex;
+			justify-content: center;
+	
+			.button .active {
+				display: block;
+			}
+	
+			.volume {
+				position: absolute;
+				left: .5em;
+				img {
+					display: none;
+				}
+			}		
+
+			.volume.animation-appear-volume-bar volume-bar {
+				display: flex;
+				animation: 0.25s appear-volume-bar forwards;
+			}
+			.animation-appear-volume-bar{
+				display: flex;
+				animation: 0.25s appear-volume-bar forwards;
+			}
+			@keyframes appear-volume-bar {
+				from {
+					opacity: 0.2;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			
+			.volume-bar {
+				display: none;
+				justify-content: flex-start;
+				align-items: center;
+				position: absolute;
+				top: -4.5em;
+				left: -1.95em;
+				z-index: 3;
+				width: 8em;
+				height: 3.3em;
+	
+				padding: 1em 0;
+				background: linear-gradient(to left, rgba(128, 58, 58, 0) 1%, $background-color-buttons 20%);
+				opacity: 0;
+				transition: 0.25s all;
+				transform: rotate(-90deg);
+	
+				.volume-range,
+				.volume-range::-webkit-slider-thumb {
+					-webkit-appearance: none;
+					width: 100%;
+					background-color: $color-bar-progress;
+					cursor: pointer;
+				}
+				
+				.volume-range:focus {
+					outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+				}
+	
+				.volume-range::-ms-track {
+					width: 100%;
+					cursor: pointer;
+	
+					/* Hides the slider so custom styles can be added */
+					background: transparent;
+					border-color: transparent;
+					color: transparent;
+				}
+	
+				/* all the same stuff for Chrome*/
+				/* All the same stuff for Firefox */
+				/* All the same stuff for IE */
+				input[type="range"]::-webkit-slider-thumb {
+					-webkit-appearance: none;
+					height: 2em;
+					width: 1em;
+					background: $color-bar-progress;
+					cursor: pointer;
+					margin-top: -.7em; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+				}
+	
+				/* All the same stuff for Firefox */
+				input[type="range"]::-moz-range-thumb {
+					height: 2em;
+					width: 1em;
+					background: $color-bar-progress;
+					cursor: pointer;
+				}
+	
+				/* All the same stuff for IE */
+				input[type="range"]::-ms-thumb {
+					height: 2em;
+					width: 1em;
+					background: $color-bar-progress;
+					cursor: pointer;
+				}
+	
+	
+	
+				input[type="range"]::-webkit-slider-runnable-track {
+					width: 100%;
+					height: 8.4px;
+					cursor: pointer;
+					background: $color-bar-progress;
+					border-radius: 1em;
+				}
+	
+				input[type="range"]::-moz-range-track {
+					width: 100%;
+					height: 8.4px;
+					cursor: pointer;
+					box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+					background: $color-bar-progress;
+					border-radius: 1em;
+					border: 0.2px solid #010101;
+				}
+	
+				input[type="range"]::-ms-track {
+					width: 100%;
+					height: 8.4px;
+					cursor: pointer;
+					background: transparent;
+					border-color: transparent;
+					border-width: 16px 0;
+					color: transparent;
+				}
+	
+				input[type="range"]::-ms-fill-lower {
+					background: $color-bar-progress;
+					border-radius: 1em;
+				}
+				input[type="range"]:focus::-ms-fill-lower {
+					background: $color-bar-progress;
+				}
+				input[type="range"]::-ms-fill-upper {
+					background: $color-point-progress;
+					box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+					border-radius: 1em;
+				}
+				input[type="range"]:focus::-ms-fill-upper {
+					background: $color-point-progress;
+					box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+				}
+			}
+	
+			.play {
+				img {
+					display: none;
+				}
+			}
+	
+			.full-screen {
+				position: absolute;
+				right: .5em;
+				img {
+					display: none;
+				}
+			}
+		}
+		
+		.aditional-controls.active{
+			display: flex;
+		}
+		.aditional-controls {
+			display: none;
+			margin-bottom: .5em;
+
+			* {
+				box-sizing: border-box;
+			}
+	
+			.button + button {
+				margin-left: 10em;
+	
+				@include mq(30em) {
+					margin-left: 20em;
+				}
+			}
+	
+			.repeat {
+				border: 0.3em solid transparent;
+				outline: 0.3em solid transparent;
+				position: relative;
+				padding: 0;
+			}
+	
+			.repeat-m {
+				border: 0.3em solid $background-color;
+				outline: 0.3em solid $background-color-buttons;
+			}
+			.repeat-1 {
+				border: 0.3em solid $background-color;
+				outline: 0.3em solid $background-color-buttons;
+			}
+			.repeat-1::after {
+				content: "1";
+				color: rgb(0, 0, 0);
+				font-size: 2em;
+				font-weight: bolder;
+	
+				position: absolute;
+				top: 20%;
+				left: 15.245px;
+				margin-left: auto;
+				margin-right: auto;
+	
+				text-align: center;
+			}
+	
+			#random {
+				border: 0.3em solid transparent;
+				outline: 0.3em solid transparent;
+				padding: 0;
+			}
+			#random.active {
+				border: 0.3em solid $background-color;
+				outline: 0.3em solid $background-color-buttons;
+			}
+		}	
+	}
+	
+}

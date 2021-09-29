@@ -1,0 +1,67 @@
+/*
+    Styleis for the animationMusicMove in the frame (image's song in full-screen) background 
+    (check animationMusicMove.js for specifications)
+
+    "it's not recomemded change the background in .back-frame"
+
+    the animation is several blocks hide and visiable while the animation is playing ... 
+*/
+
+@import "mixins";
+
+$space-between-blocks-cellphones : 2px;
+$space-between-blocks-tablets : 4px;
+$space-between-blocks-computer : 6px;
+
+.back-frame{
+    position: absolute;
+    top: 3em;
+    left: 0;
+    right: 0;
+    bottom: 3em;
+
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 60em;
+    *{
+        box-sizing: border-box;
+    }
+}
+
+.column{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 $space-between-blocks-cellphones;
+    
+    
+    @include mq(30em){
+        margin: 0 $space-between-blocks-tablets;
+    }
+    @include mq(45em){
+        margin: 0 $space-between-blocks-computer;
+    }
+}
+.block{
+    width: 100%;
+    flex: 1;
+    margin: $space-between-blocks-cellphones 0;
+    background-color: $primary-color;
+    transition: visibility .25s;
+    visibility: hidden;
+
+    @include mq(30em){
+        margin: $space-between-blocks-tablets 0;
+    }
+    @include mq(45em){
+        margin: $space-between-blocks-computer 0;
+    }
+}
+
+.block-transparency{
+    visibility: visible;
+}

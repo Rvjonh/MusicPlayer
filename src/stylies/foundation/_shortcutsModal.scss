@@ -1,0 +1,147 @@
+.shortcut-modal{
+    position: absolute;
+    left: 50%;
+    margin-left: -20em;
+    transition: transform .5s;
+    z-index: 5;
+    animation: move-shortcut-modal-logo 10s 5s infinite;
+    display: none;
+    
+    picture.logo-modal{
+        cursor: zoom-in;
+        transform: rotate(90deg);
+        width: 2em;
+        height: 2em;
+
+        img.logo-img{
+            display: block;
+            width: inherit;
+            height: inherit;
+        }
+    }
+
+    .info-modal{
+        display: none;
+    }
+}
+@keyframes move-shortcut-modal-logo {
+    from{
+        transform: rotate(0deg);
+    }
+    2%{
+        transform: rotate(20deg);
+    }
+    4%{
+        transform: rotate(-20deg);
+    }
+    8%{
+        transform: rotate(10deg);
+    }
+    10%{
+        transform: rotate(-10deg);
+    }
+    12%{
+        transform: rotate(0deg);
+    }
+}
+
+.shortcut-modal-expanded{
+    width: 100%;
+    max-width: 55em;
+    height: auto;
+
+    top: 4em;
+    left: 50%;
+    margin-left: -27.5em;
+
+  
+    background: rgb(71,71,71);
+    background: radial-gradient(circle, rgb(54, 54, 54) 0%, rgb(15, 15, 15) 68%);
+    background-position: top;
+    border-radius: 1em;
+    box-shadow: .5em .5em 1em rgb(40, 40, 40), -0.5em -0.5em 1em rgb(40, 40, 40);
+    animation: show-modal-shortcuts .25s forwards;
+
+    picture.logo-modal{
+        position: absolute;
+        top: 2em;
+        left: 1em;
+        cursor: zoom-out;
+        transform: rotate(0deg);
+    }
+
+    .info-modal{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        width: 100%;
+
+        padding: 1em;
+        padding-bottom: 5em;
+        font-size: 1.4rem;
+        color: $text-color;
+
+        #close-button-shortcuts-modal{
+            position: absolute;
+            font-size: 2em;
+            top: .25em;
+            right: .5em;
+
+            cursor: pointer;
+        }
+
+
+        ul{
+            width: 100%;
+            margin-top: 1em;
+            list-style: none;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            li{
+                margin-top: 1em;
+                width: 50%;
+            }
+            
+            li figure{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .button-keyboard{
+                    cursor: pointer;
+                    padding: 1em;
+                    font-size: 1.1rem;
+                    outline: none;
+                    border: none;
+                    color: rgb(255, 255, 255);
+                    background-color: rgb(37, 37, 37);
+                    box-shadow: .2em .2em  rgb(100, 100, 100), -.2em .2em rgb(100, 100, 100);
+                }
+                .button-keyboard:active{
+                    outline: none;
+                    box-shadow: .05em .05em  rgb(100, 100, 100), -.05em .05em rgb(100, 100, 100);
+                }
+
+                figcaption{
+                    cursor: default;
+                    margin-left: 1em;
+                }
+            }
+        }
+
+    }
+
+}
+@keyframes show-modal-shortcuts {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
