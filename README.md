@@ -2,6 +2,7 @@
 
 You can check it right here:
 [MediaPlayer - Jonh Gomez on netlify](URL "https://determined-keller-915cae.netlify.app/")
+https://determined-keller-915cae.netlify.app/
 
 
 ## MediaPlayer
