@@ -8,7 +8,7 @@ https://determined-keller-915cae.netlify.app/
 ## MediaPlayer
 
 Media player to listen to some of my favorite songs anywhere, I always wanted to build a media player to know how this type of software work, so I decided to code one with the simpliest tecnologies beside on the web.
-So this proyect uses the next tecnologies:
+So this project uses the next tecnologies:
 
 Tecnologies
 
