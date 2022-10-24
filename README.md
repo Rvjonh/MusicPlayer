@@ -2,7 +2,7 @@
 
 You can check it right here:
 
-https://determined-keller-915cae.netlify.app/
+[Live Aplication Link](https://rvjonh-musicplayer.netlify.app/)
 
 
 ## MediaPlayer
